@@ -1,0 +1,23 @@
+language: generic
+
+sudo: required
+
+services:
+  - docker
+
+before_install:
+  - docker build -t jiwonchoe/react-test-app -f ./frontend/Dockerfile.dev ./frontend
+
+script:
+  - docker run -e CI=true jiwonchoe/react-test-app npm run test
+
+after_success:
+  - docker build -t jiwonchoe/docker-frontend ./frontend
+  - docker build -t jiwonchoe/docker-backend ./backend
+  - docker build -t jiwonchoe/docker-nginx ./nginx
+
+  - echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_HUB_ID" --password-stdion
+
+  - docker push jiwonchoe/docker-frontend
+  - docker push jiwonchoe/docker-backend
+  - docker push jiwonchoe/docker-nginx
