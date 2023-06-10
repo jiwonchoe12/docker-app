@@ -56,7 +56,7 @@ function App() {
             <li key={index}>{list.value} </li>
           ))}
           <br />
-            안녕하세요.
+            Notice Board
           <form className="example" onSubmit={submitHandler}>
             <input
               type="text"
