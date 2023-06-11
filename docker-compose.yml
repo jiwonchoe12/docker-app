@@ -1,14 +1,6 @@
 version: "2.4"
 services:
-  frontend1:
-    image: jiwonchoe/docker-frontend
-    volumes:
-      - /app/node_modules
-      - ./frontend:/app
-    stdin_open: true
-    mem_limit: 128m
-  
-  frontend2:
+  frontend:
     image: jiwonchoe/docker-frontend
     volumes:
       - /app/node_modules
@@ -26,24 +18,12 @@ services:
       - frontend
       - backend
 
-  backend1:
+  backend:
     image: jiwonchoe/docker-backend
     volumes:
       - /app/node_modules
       - ./backend:/app
-    environment: 
-      MYSQL_HOST: docker-mysql.c2nu57c39bok.ap-northeast-1.rds.amazonaws.com
-      MYSQL_USER: root 
-      MYSQL_ROOT_PASSWORD: jiwonchoe
-      MYSQL_DATABASE: myapp
-      MYSQL_PORT: 3306   
-    mem_limit: 128m
-
-  backend2:
-    image: jiwonchoe/docker-backend
-    volumes:
-      - /app/node_modules
-      - ./backend:/app
+    container_name: app_backend
     environment: 
       MYSQL_HOST: docker-mysql.c2nu57c39bok.ap-northeast-1.rds.amazonaws.com
       MYSQL_USER: root 
