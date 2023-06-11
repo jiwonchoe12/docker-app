@@ -28,7 +28,6 @@ services:
 
   backend1:
     image: jiwonchoe/docker-backend
-    container_name: app_backend
     volumes:
       - /app/node_modules
       - ./backend:/app
@@ -42,7 +41,6 @@ services:
 
   backend2:
     image: jiwonchoe/docker-backend
-    container_name: app_backend
     volumes:
       - /app/node_modules
       - ./backend:/app
